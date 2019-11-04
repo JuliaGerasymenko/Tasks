@@ -3,11 +3,7 @@
 let base = 1000000;
 
 function addition(arr1, arr2) {
-  if (arr1.length < arr2.length) {
-    let tmp = arr1;
-    arr1 = arr2;
-    arr2 = tmp;
-  }
+  if (arr1.length < arr2.length) [arr1, arr2] = [arr2, arr1];
   if (arr2[0] === 0 && arr2.length === 1) return arr1;
   let len1 = arr1.length;
   let len2 = arr2.length;
@@ -17,7 +13,7 @@ function addition(arr1, arr2) {
 
   for (let i = 0; i < len1; i++) {
     arr1[i] += arr2[i];
-    if (arr1[i] > base - 1) {
+    if (arr1[i] >= base) {
       arr1[i] -= base;
       i === len1 - 1 ? arr1.push(1) : (arr1[i + 1] += 1);
     }
@@ -192,4 +188,3 @@ console.log(fibonacci(0,1,10));
         //   .reverse()
         //   .join('');
 // }
-
