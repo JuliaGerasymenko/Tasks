@@ -3,15 +3,14 @@
 let base = 1000000;
 
 function addition(arr1, arr2) {
-  if (arr1.length < arr2.length) [arr1, arr2] = [arr2, arr1];
+  if (arr1.length < arr2.length) {
+    [arr1, arr2] = [arr2, arr1];
+  }
   if (arr2[0] === 0 && arr2.length === 1) return arr1;
   let len1 = arr1.length;
   let len2 = arr2.length;
-  while (arr2.length !== len1) {
-    arr2.push(0);
-  }
 
-  for (let i = 0; i < len1; i++) {
+  for (let i = 0; i < len2; i++) {
     arr1[i] += arr2[i];
     if (arr1[i] >= base) {
       arr1[i] -= base;
@@ -37,85 +36,12 @@ function multiplication(arr1, arr2) {
       }
     }
   }
-  // unusable for a case where arr1 = arr2
-  // while (arr2.length !== len1) {
-  //   arr2.push(0);
-  // }
-
-  let res = new Array(len2 + len1 - 1).fill(0);
-  let resLen = res.length - 1;
-  for (let i = 0; i < len1; i++) {
-    for (let j = 0; j < len1; j++) {
-      res[j + i] += use strict';
-
-let base = 1000000;
-
-function addition(arr1, arr2) {
-  if (arr1.length < arr2.length) {
-    let tmp = arr1;
-    arr1 = arr2;
-    arr2 = tmp;
-  }
-  if (arr2[0] === 0 && arr2.length === 1) return arr1;
-  let len1 = arr1.length;
-  let len2 = arr2.length;
-  while (arr2.length !== len1) {
-    arr2.push(0);
-  }
-
-  for (let i = 0; i < len1; i++) {
-    arr1[i] += arr2[i];
-    if (arr1[i] > base - 1) {
-      arr1[i] -= base;
-      i === len1 - 1 ? arr1.push(1) : (arr1[i + 1] += 1);
-    }
-  }
-  return arr1;
-}
-
-function multiplication(arr1, arr2) {
-  if (!arr1[0] && arr1.length === 1) return arr1;
-  let len1 = arr1.length;
-  let len2 = arr2.length;
-
-  if (len1 !== len2) {
-    if (len1 < len2) {
-      while (arr2.length !== len1) {
-        arr1.push(0);
-      }
-    } else {
-      while (arr2.length !== len1) {
-        arr2.push(0);
-      }
-    }
-  }
-  // unusable for a case where arr1 = arr2
-  // while (arr2.length !== len1) {
-  //   arr2.push(0);
-  // }
 
   let res = new Array(len2 + len1 - 1).fill(0);
   let resLen = res.length - 1;
   for (let i = 0; i < len1; i++) {
     for (let j = 0; j < len1; j++) {
       res[j + i] += arr2[i] * arr1[j];
-      if (res[j + i] > base - 1) {
-        let divider = Math.floor(res[j + i] / base);
-        res[j + i] %= base;
-        res[j + i + 1] === undefined
-          ? res.push(divider)
-          : (res[j + i + 1] += divider);
-      }
-    }
-  }
-
-  while (!res[res.length - 1]) {
-    res.pop();
-  }
-  return res;
-}
-
-function fibonacci(t1, t2, narr2[i] * arr1[j];
       if (res[j + i] > base - 1) {
         let divider = Math.floor(res[j + i] / base);
         res[j + i] %= base;
