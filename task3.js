@@ -16,18 +16,20 @@ function seiveOriginal(n) {
   }
 }
 
-function getPower(divider, i, power, n) {
+function getPower(divider,n) {
+  let power = 0;
   while (n%divider === 0) {
     n/=divider;
-    power[i]++;
+    power++;
   }
+  return power;
 }
 
 function factorization(n) {
   seiveOriginal(36);
   const len = primes.length;
-  let power = new Array(len).fill(0);
-  for (let i = 0; i < len; i++) getPower(primes[i], i, power, n);
+  let power = new Array(len);
+  for (let i = 0; i < len; i++) power[i] = getPower(primes[i], n);
   return power;
 }
 
