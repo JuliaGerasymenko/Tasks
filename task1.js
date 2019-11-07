@@ -1,7 +1,7 @@
 'use strict';
 
-let base = 10000;
-let baseLog = Math.log10(10*base);
+let base = 1000000;
+let baseLog = Math.log10(base);
 
 function addition(arr1, arr2) {
   if (arr1.length < arr2.length) [arr1, arr2] = [arr2, arr1];
@@ -24,8 +24,8 @@ function addition(arr1, arr2) {
 function multiplication(arr1, arr2) {
   if (!arr1[0] && arr1.length === 1) return arr1;
 
-  let len1 = arr1.length;
-  let len2 = arr2.length;
+  let len = arr1.length;
+  // let len2 = arr2.length;
 
   // if (len1 !== len2)
   //   if (len1 < len2) {
@@ -36,11 +36,11 @@ function multiplication(arr1, arr2) {
   //     while (arr2.length !== len1) arr2.push(0);
   //   }
 
-  let res = new Array(len2 + len1 - 1).fill(0);
+  let res = new Array(2*len - 1).fill(0);
   let resLen = res.length - 1;
 
-  for (let i = 0; i < len1; i++) {
-    for (let j = 0; j < len1; j++) {
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len; j++) {
       res[j + i] += arr2[i] * arr1[j];
       if (res[j + i] >= base) {
         let divider = Math.floor(res[j + i] / base);
