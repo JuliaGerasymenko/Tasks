@@ -2,7 +2,7 @@
 
 const merge = intervals => {
   let len = intervals.length;
-  if (len === 1) return intervals;
+  if (len <= 1) return intervals;
   let res = [];
   for (let i = 0; i < intervals.length; i++) {
     for (let j = i + 1; j < intervals.length; j++) {
