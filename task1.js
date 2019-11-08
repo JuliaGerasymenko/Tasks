@@ -24,23 +24,13 @@ function addition(arr1, arr2) {
 function multiplication(arr1, arr2) {
   if (!arr1[0] && arr1.length === 1) return arr1;
 
-  let len = arr1.length;
-  // let len2 = arr2.length;
-
-  // if (len1 !== len2)
-  //   if (len1 < len2) {
-  //     while (arr2.length !== len1) {
-  //       arr1.push(0);
-  //     }
-  //   } else {
-  //     while (arr2.length !== len1) arr2.push(0);
-  //   }
-
-  let res = new Array(2*len - 1).fill(0);
+  let len1 = arr1.length;
+  let len2 = arr2.length;
+  let res = new Array(len1 + len2 - 1).fill(0);
   let resLen = res.length - 1;
 
-  for (let i = 0; i < len; i++) {
-    for (let j = 0; j < len; j++) {
+  for (let i = 0; i < len2; i++) {
+    for (let j = 0; j < len1; j++) {
       res[j + i] += arr2[i] * arr1[j];
       if (res[j + i] >= base) {
         let divider = Math.floor(res[j + i] / base);
@@ -51,10 +41,6 @@ function multiplication(arr1, arr2) {
       }
     }
   }
-
-  // while (!res[res.length - 1]) {
-  //   res.pop();
-  // }
 
   return res;
 }
