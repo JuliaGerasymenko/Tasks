@@ -52,7 +52,7 @@ function concat(intervals) {
   let res = [intervals.shift()];
   for (let interval of intervals) {
     let lastIndex = res.length - 1;
-    interval !== res[lastIndex] && interval[0] <= res[lastIndex][1]
+    interval[0] <= res[lastIndex][1]
       ? res[lastIndex][1] = Math.max(res[lastIndex][1], interval[1])
       : res.push(interval);
   }
