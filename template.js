@@ -9,19 +9,33 @@ class StringBuffer {
     this.buffer[this.index] = str;
     this.index++;
   }
+  createStr(str) {
+    for (;this.index < str.length; this.index++)
+      this.buffer[this.index] = str[this.index];
+  }
+  changeEl(index, el) {
+    this.buffer[index] = el;
+  }
 }
 
-function template(str, arr = new StringBuffer(), start = 0) {
-  let index = str.indexOf('*', start);
+function template(bufferStr, arr = new StringBuffer(), start = 0) {
+  let index = bufferStr.buffer.indexOf('*', start);
   if (index === -1) {
-    arr.add(str);
-    return;
+    arr.add(bufferStr.buffer.join(''));
+    return arr.buffer;
   }
-  let newStr = str.substring(0, index) + '0' + str.substring(index+1);
-  template(newStr, arr, index+1);
-  newStr = str.substring(0, index) + '1' + str.substring(index+1);
-  template(newStr, arr, index+1);
+
+  bufferStr.changeEl(index, '0');
+  template(bufferStr, arr, index + 1);
+  bufferStr.changeEl(index, '1');
+  template(bufferStr, arr, index + 1);
+  bufferStr.changeEl(index, '*');
   return arr.buffer;
 }
 
-console.log(template('0*1*'));
+function findStr(str) {
+  let bufferStr = new StringBuffer();
+  bufferStr.createStr(str);
+  return template(bufferStr);
+}
+console.log(findStr('123'));
