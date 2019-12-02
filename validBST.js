@@ -9,8 +9,5 @@ var isValidBST = function(
 
   if (root.val >= higherBound || root.val <= lowerBound) return false;
 
-  return !(isValidBST(root.left, lowerBound, root.val) &&
-    isValidBST(root.right, root.val, higherBound))
-    ? false
-    : true;
+  return !(isValidBST(root.left, lowerBound, root.val) && isValidBST(root.right, root.val, higherBound));
 };
