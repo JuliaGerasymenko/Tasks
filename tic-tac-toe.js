@@ -12,14 +12,15 @@ function row(board) {
 }
 
 function col(board) {
-  let win = [false, false];
   for (let i in board) {
-    for (let j in board) if (board[j][i] === board[0][i]) win[j - 1] = true;
-    if (win.every(elem => elem)) {
-      return board[0][i];
-    } else {
-      win.fill(false);
+    let win = true;
+    for (let j in board) {
+      if (board[j][i] !== board[0][i]) {
+        win = false;
+        break;
+      }
     }
+    if (win) return board[0][i];
   }
   return false;
 }
@@ -42,10 +43,13 @@ function toe(board) {
   return ans ? ans : board.every(arr => arr.every(el => el)) ? 0 : -1;
 }
 
-console.log(
-  toe([
-    [0, 0, 0],
-    [1, 1, 1],
-    [2, 1, 2]
-  ])
-);
+let buf;
+process.stdin.on('data', input => {
+  buf = input.toString().split('\n').filter(el => el.length)
+    .map(el => el.trim().split(' ').map(el => parseInt(el)));
+    console.log(buf)
+});
+
+process.stdin.on('end', function() {
+  for (let i = 1; i <= buf[0]; i++) console.log(toe(buf.slice(i, i+3)));
+});
