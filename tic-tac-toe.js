@@ -1,21 +1,18 @@
 'use strict';
 
 function row(board) {
-  let el = false;
-  board.forEach(arr => {
-    if (arr.every(el => el === arr[0])) {
-      el = arr[0];
-      return true;
+  for (let arr of board)
+    if (arr.every(el => (arr[0] && el === arr[0]))) {
+      return arr[0];
     }
-  });
-  return el;
+  return false;
 }
 
 function col(board) {
   for (let i in board) {
     let win = true;
     for (let j in board) {
-      if (board[j][i] !== board[0][i]) {
+      if (board[0][i] && board[j][i] !== board[0][i]) {
         win = false;
         break;
       }
@@ -39,16 +36,15 @@ function diag(board) {
 }
 
 function toe(board) {
+  console.log(board)
   let ans = col(board) || diag(board) || row(board);
   return ans ? ans : board.every(arr => arr.every(el => el)) ? 0 : -1;
 }
 
-let buf;
-process.stdin.on('data', input => {
-  buf = input.toString().split('\n').filter(el => el.length)
-    .map(el => el.trim().split(' ').map(el => parseInt(el)));
-});
+let buf = [];
+process.stdin.on('data', input => buf.push(...input.toString().split('\n').filter(el => el.length)));
 
 process.stdin.on('end', function() {
-  for (let i = 1; i <= buf[0]; i++) console.log(toe(buf.slice(i, i+3)));
+  buf = buf.map(el => el.trim().split(' ').map(el => parseInt(el)));
+  for (let i = 1; i <= buf[0]*3; i += 3) console.log(toe(new Array(...buf.slice(i, i+3))));
 });
