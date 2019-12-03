@@ -27,8 +27,8 @@ function diag(board) {
   let rDiag = [false, false];
 
   for (let i = 1; i < 3; i++) {
-    if (board[i][i] === board[0][0]) lDiag[i - 1] = true;
-    if (board[i][2 - i] === board[0][2]) rDiag[i - 1] = true;
+    lDiag[i - 1] = board[i][i] === board[0][0];
+    rDiag[i - 1] = board[i][2 - i] === board[0][2];
   }
   if (lDiag.every(el => el)) return board[0][0];
   if (rDiag.every(el => el)) return board[0][2];
@@ -36,7 +36,6 @@ function diag(board) {
 }
 
 function toe(board) {
-  console.log(board)
   let ans = col(board) || diag(board) || row(board);
   return ans ? ans : board.every(arr => arr.every(el => el)) ? 0 : -1;
 }
