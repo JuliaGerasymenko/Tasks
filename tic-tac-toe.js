@@ -47,7 +47,6 @@ let buf;
 process.stdin.on('data', input => {
   buf = input.toString().split('\n').filter(el => el.length)
     .map(el => el.trim().split(' ').map(el => parseInt(el)));
-    console.log(buf)
 });
 
 process.stdin.on('end', function() {
