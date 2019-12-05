@@ -41,9 +41,9 @@ function toe(board) {
 }
 
 let buf = [];
-process.stdin.on('data', input => buf.push(...input.toString().split('\n').filter(el => el.length)));
+process.stdin.on('data', input => buf.push(input));
 
 process.stdin.on('end', function() {
-  buf = buf.map(el => el.trim().split(' ').map(el => parseInt(el)));
+  buf = buf.join('').split('\n').filter(el => el.length).map(el => el.toString().trim().split(' ').map(el => parseInt(el)));
   for (let i = 1; i <= buf[0]*3; i += 3) console.log(toe(new Array(...buf.slice(i, i+3))));
 });
